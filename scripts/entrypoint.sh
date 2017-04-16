@@ -15,6 +15,20 @@ if [ ! -f "$INITALIZED" ]; then
   echo ">> CONTAINER: starting initialisation"
 
   ##
+  # rsyncd secrets ENVs
+  ##
+  for I_CONF in "$(env | grep '^RSYNC_SECRET_')"
+  do
+    ACCOUNT_NAME=$(echo "$I_CONF" | cut -d'=' -f1 | sed 's/HTACCESS_ACCOUNT_//g' | tr '[:upper:]' '[:lower:]')
+    CONF_CONF_VALUE=$(echo "$I_CONF" | sed 's/^[^=]*=//g')
+
+    echo ">> RSYNC SECRETS: adding account: $ACCOUNT_NAME"
+    echo "$CONF_CONF_VALUE" >> /etc/rsyncd.secrets
+
+    unset $(echo "$I_CONF" | cut -d'=' -f1)
+  done
+
+  ##
   # rsyncd Global Config ENVs
   ##
   for I_CONF in "$(env | grep '^RSYNC_GLOBAL_CONFIG_')"

@@ -23,9 +23,15 @@ RUN export rsync_version=3.1.2 \
  \
  && cd - \
  && rm -rf rsync-${rsync_version} \
+ \
+ && touch /etc/rsyncd.secrets \
+ && chmod 600 /etc/rsyncd.secrets
+ \
  && echo "log file = /dev/stdout" > /etc/rsyncd.conf \
  && echo "use chroot = yes" >> /etc/rsyncd.conf \
  && echo "list = yes" >> /etc/rsyncd.conf \
+ && echo "strict modes = yes" >> /etc/rsyncd.conf \
+ && echo "secrets file = /etc/rsyncd.secrets" >> /etc/rsyncd.conf \
  && echo "uid = nobody" >> /etc/rsyncd.conf \
  && echo "gid = nogroup" >> /etc/rsyncd.conf \
  && echo "transfer logging = no" >> /etc/rsyncd.conf \

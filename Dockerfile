@@ -17,7 +17,7 @@ RUN export rsync_version=3.1.2 \
  && rm rsync-${rsync_version}.tar.gz \
  && cd rsync-${rsync_version} \
  \
- && ./configure --prefix= \
+ && ./configure --prefix=/ \
  && make \
  && make install \
  \

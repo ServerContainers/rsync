@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  rsync:
+    build: .
+    image: servercontainers/rsync
+    restart: always
+    environment:
+      RSYNC_GLOBAL_CONFIG_maxcon: "max connections = 0"
+      RSYNC_VOLUME_CONFIG_alice: "[alice]; path = /shares/alice; comment = alices public files; read only = yes"
+      RSYNC_VOLUME_CONFIG_bob: "[timemachine]; path = /shares/timemachine; comment = timemachine files;"
+    volumes:
+      - ./shares/alice:/shares/alice
+      - ./shares/timemachine:/shares/timemachine
+    ports:
+      - 873:873
+    networks:
+      - rsync
+
+networks:
+  rsync:
+    driver: bridge

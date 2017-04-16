@@ -23,8 +23,26 @@ RUN export rsync_version=3.1.2 \
  \
  && cd - \
  && rm -rf rsync-${rsync_version} \
- && && echo -e "log file = /dev/stdout\nuse chroot = yes\nlist = yes\nuid = nobody\ngid = nogroup\nstrict modes = yes\ntransfer logging = no\ntimeout = 600\nrefuse options = checksum dry-run\ndont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz" > /etc/rsyncd.conf
+ && echo "log file = /dev/stdout" > /etc/rsyncd.conf \
+ && echo "use chroot = yes" >> /etc/rsyncd.conf \
+ && echo "list = yes" >> /etc/rsyncd.conf \
+ && echo "uid = nobody" >> /etc/rsyncd.conf \
+ && echo "gid = nogroup" >> /etc/rsyncd.conf \
+ && echo "transfer logging = no" >> /etc/rsyncd.conf \
+ && echo "timeout = 600" >> /etc/rsyncd.conf \
+ && echo "ignore errors = no" >> /etc/rsyncd.conf \
+ && echo "ignore nonreadable = yes" >> /etc/rsyncd.conf \
+ && echo "refuse options = checksum dry-run" >> /etc/rsyncd.conf \
+ && echo "dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz" >> /etc/rsyncd.conf \
+ && echo "" >> /etc/rsyncd.conf
+
+VOLUME ["/shares"]
 
 EXPOSE 873
+
+COPY scripts /usr/local/bin/
+
+HEALTHCHECK CMD ["docker-healthcheck.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 
 CMD [ "rsync", "--no-detach", "--daemon", "--config", "/etc/rsyncd.conf" ]

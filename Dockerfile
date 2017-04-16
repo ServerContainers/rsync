@@ -23,7 +23,7 @@ RUN export rsync_version=3.1.2 \
  \
  && cd - \
  && rm -rf rsync-${rsync_version} \
- && echo "log file = /dev/stdout" > /etc/rsyncd.conf
+ && && echo -e "log file = /dev/stdout\nuse chroot = yes\nlist = yes\nuid = nobody\ngid = nogroup\nstrict modes = yes\ntransfer logging = no\ntimeout = 600\nrefuse options = checksum dry-run\ndont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz" > /etc/rsyncd.conf
 
 EXPOSE 873
 

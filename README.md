@@ -23,8 +23,6 @@ Check the following link for a new version: https://www.samba.org/ftp/rsync/src/
 
 ### rsync
 
-RSYNC_SECRET_
-
 * __RSYNC\_SECRET\_mysecretname__
     * adds a new secret to /etc/rsyncd.secrets
     * multiple secrets possible by adding unique name to RSYNC_SECRET_

@@ -25,7 +25,7 @@ RUN export rsync_version=3.1.2 \
  && rm -rf rsync-${rsync_version} \
  \
  && touch /etc/rsyncd.secrets \
- && chmod 600 /etc/rsyncd.secrets
+ && chmod 600 /etc/rsyncd.secrets \
  \
  && echo "log file = /dev/stdout" > /etc/rsyncd.conf \
  && echo "use chroot = yes" >> /etc/rsyncd.conf \

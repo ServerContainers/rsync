@@ -18,7 +18,6 @@ Check the following link for a new version: https://www.samba.org/ftp/rsync/src/
     transfer logging = no
     timeout = 600
     ignore errors = no
-    ignore nonreadable = yes
     refuse options = checksum dry-run
     dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz
 

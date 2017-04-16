@@ -31,7 +31,6 @@ RUN export rsync_version=3.1.2 \
  && echo "transfer logging = no" >> /etc/rsyncd.conf \
  && echo "timeout = 600" >> /etc/rsyncd.conf \
  && echo "ignore errors = no" >> /etc/rsyncd.conf \
- && echo "ignore nonreadable = yes" >> /etc/rsyncd.conf \
  && echo "refuse options = checksum dry-run" >> /etc/rsyncd.conf \
  && echo "dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz" >> /etc/rsyncd.conf \
  && echo "" >> /etc/rsyncd.conf

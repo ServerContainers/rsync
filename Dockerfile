@@ -16,9 +16,11 @@ RUN export rsync_version=3.1.2 \
  && tar xvf rsync-${rsync_version}.tar.gz \
  && rm rsync-${rsync_version}.tar.gz \
  && cd rsync-${rsync_version} \
+ \
  && ./configure --prefix= \
  && make \
  && make install \
+ \
  && cd - \
  && rm -rf rsync-${rsync_version} \
  && echo -e "log file = /dev/stdout\nuse chroot = yes" > /etc/rsyncd.conf

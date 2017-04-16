@@ -10,6 +10,7 @@ RUN export rsync_version=3.1.2 \
                           zlib1g \
  \
  && apt-get -q -y clean \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
  \
  && wget https://www.samba.org/ftp/rsync/src/rsync-${rsync_version}.tar.gz \
  && tar xvf rsync-${rsync_version}.tar.gz \

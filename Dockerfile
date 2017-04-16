@@ -23,7 +23,7 @@ RUN export rsync_version=3.1.2 \
  \
  && cd - \
  && rm -rf rsync-${rsync_version} \
- && echo -e "log file = /dev/stdout\nuse chroot = yes" > /etc/rsyncd.conf
+ && echo "log file = /dev/stdout" > /etc/rsyncd.conf
 
 EXPOSE 873
 

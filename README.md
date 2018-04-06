@@ -1,5 +1,3 @@
-# still under construction
-
 # rsync
 rsync - freshly complied from official stable releases on debian:jessie
 

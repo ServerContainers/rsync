@@ -1,7 +1,7 @@
 # still under construction
 
 # rsync
-rsync 3.1.2 - freshly complied from official stable releases on debian:jessie
+rsync - freshly complied from official stable releases on debian:jessie
 
 # Source Code
 Check the following link for a new version: https://www.samba.org/ftp/rsync/src/

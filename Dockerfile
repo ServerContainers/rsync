@@ -1,6 +1,6 @@
-FROM debian:jessie
+FROM debian:stretch
 
-RUN export rsync_version=3.1.2 \
+RUN export rsync_version=3.1.3 \
  && export DEBIAN_FRONTEND=noninteractive \
  \
  && apt-get -q -y update \

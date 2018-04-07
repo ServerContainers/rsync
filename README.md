@@ -1,5 +1,5 @@
 # rsync
-rsync - freshly complied from official stable releases on debian:jessie
+rsync - freshly complied from official stable releases on debian:stretch
 
 # Source Code
 Check the following link for a new version: https://www.samba.org/ftp/rsync/src/

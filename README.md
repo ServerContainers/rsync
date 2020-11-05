@@ -4,6 +4,12 @@ rsync - freshly complied from official stable releases on debian:stretch
 # Source Code
 Check the following link for a new version: https://www.samba.org/ftp/rsync/src/
 
+## Changelogs
+
+* 2020-11-05
+    * multiarch build
+    * rsync version update to `3.2.3`
+
 ## Environment variables and defaults
 
 ### default /etc/rsyncd.conf

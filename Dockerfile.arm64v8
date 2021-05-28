@@ -4,28 +4,20 @@ FROM alpine AS builder
 ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-aarch64.tar.gz
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
-FROM arm64v8/debian:sid
-# alpine:3.12
+FROM arm64v8/alpine
 
 COPY --from=builder qemu-aarch64-static /usr/bin
 
 ENV PATH="/container/scripts:${PATH}"
 
 RUN export rsync_version=3.2.3 \
- && export DEBIAN_FRONTEND=noninteractive \
  \
- && apt-get -q -y update \
- && apt-get -q -y install build-essential \
-                          wget \
- && apt-get -q -y install libssl-dev \
-                          libpopt0 \
-                          zlib1g \
-                          liblz4-dev \
-                          libzstd-dev \
-                          libxxhash-dev \
- \
- && apt-get -q -y clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+ && apk add --no-cache alpine-sdk \
+                       bash \
+                       openssl-dev \
+                       lz4-dev \
+                       zstd-dev \
+                       xxhash-dev \
  \
  && wget https://www.samba.org/ftp/rsync/src/rsync-${rsync_version}.tar.gz \
  && tar xvf rsync-${rsync_version}.tar.gz \
@@ -39,28 +31,17 @@ RUN export rsync_version=3.2.3 \
  && cd - \
  && rm -rf rsync-${rsync_version} \
  \
- && touch /etc/rsyncd.secrets \
- && chmod 600 /etc/rsyncd.secrets \
+ && apk del alpine-sdk \
  \
- && echo "log file = /dev/stdout" > /etc/rsyncd.conf \
- && echo "use chroot = yes" >> /etc/rsyncd.conf \
- && echo "list = yes" >> /etc/rsyncd.conf \
- && echo "strict modes = yes" >> /etc/rsyncd.conf \
- && echo "secrets file = /etc/rsyncd.secrets" >> /etc/rsyncd.conf \
- && echo "uid = nobody" >> /etc/rsyncd.conf \
- && echo "gid = nogroup" >> /etc/rsyncd.conf \
- && echo "transfer logging = no" >> /etc/rsyncd.conf \
- && echo "timeout = 600" >> /etc/rsyncd.conf \
- && echo "ignore errors = no" >> /etc/rsyncd.conf \
- && echo "refuse options = checksum dry-run" >> /etc/rsyncd.conf \
- && echo "dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz" >> /etc/rsyncd.conf \
- && echo "" >> /etc/rsyncd.conf
+ && touch /etc/rsyncd.secrets \
+ && chmod 600 /etc/rsyncd.secrets
 
 VOLUME ["/shares"]
 
 EXPOSE 873
 
 COPY . /container/
+RUN cp /container/config/rsyncd.conf /etc/rsyncd.conf
 
 HEALTHCHECK CMD ["docker-healthcheck.sh"]
 ENTRYPOINT ["entrypoint.sh"]

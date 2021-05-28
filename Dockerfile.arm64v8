@@ -4,7 +4,7 @@ FROM alpine AS builder
 ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-aarch64.tar.gz
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
-FROM arm64v8/debian:buster
+FROM arm64v8/debian:sid
 # alpine:3.12
 
 COPY --from=builder qemu-aarch64-static /usr/bin
@@ -17,8 +17,12 @@ RUN export rsync_version=3.2.3 \
  && apt-get -q -y update \
  && apt-get -q -y install build-essential \
                           wget \
- && apt-get -q -y install libpopt0 \
+ && apt-get -q -y install libssl-dev \
+                          libpopt0 \
                           zlib1g \
+                          liblz4-dev \
+                          libzstd-dev \
+                          libxxhash-dev \
  \
  && apt-get -q -y clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \

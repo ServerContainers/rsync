@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:sid
 
 ENV PATH="/container/scripts:${PATH}"
 
@@ -8,8 +8,12 @@ RUN export rsync_version=3.2.3 \
  && apt-get -q -y update \
  && apt-get -q -y install build-essential \
                           wget \
- && apt-get -q -y install libpopt0 \
+ && apt-get -q -y install libssl-dev \
+                          libpopt0 \
                           zlib1g \
+                          liblz4-dev \
+                          libzstd-dev \
+                          libxxhash-dev \
  \
  && apt-get -q -y clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \

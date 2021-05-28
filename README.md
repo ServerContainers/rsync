@@ -1,11 +1,13 @@
 # rsync
-rsync - freshly complied from official stable releases on debian:stretch
+rsync - freshly complied from official stable releases on debian:sid
 
 # Source Code
 Check the following link for a new version: https://www.samba.org/ftp/rsync/src/
 
 ## Changelogs
 
+* 2021-05-28
+    * fixed build by switching to `debian:sid`
 * 2020-11-05
     * multiarch build
     * rsync version update to `3.2.3`

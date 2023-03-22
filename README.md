@@ -4,10 +4,22 @@ rsync - freshly complied from official stable releases on `alpine`
 # Source Code
 Check the following link for a new version: https://www.samba.org/ftp/rsync/src/
 
+## Build & Versions
+
+You can specify `DOCKER_REGISTRY` environment variable (for example `my.registry.tld`)
+and use the build script to build the main container and it's variants for _x86_64, arm64 and arm_
+
+You'll find all images tagged like `a3.15.0-r3.2.7` which means `a<alpine version>-r<rsync version>`.
+This way you can pin your installation/configuration to a certian version. or easily roll back if you experience any problems
+(don't forget to open a issue in that case ;D).
+
+To build a `latest` tag run `./build.sh release`
+
 ## Changelogs
 
 * 2023-03-20
     * complete upgrade
+    * rsync upgrade to `3.2.7`
     * github action to build container
     * implemented ghcr.io as new registry
 * 2021-05-28

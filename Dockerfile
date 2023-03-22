@@ -2,7 +2,7 @@ FROM alpine
 
 ENV PATH="/container/scripts:${PATH}"
 
-RUN export rsync_version=3.2.7 \
+RUN export rsync_version=3.2.6 \
  \
  && apk add --no-cache alpine-sdk \
                        bash \

@@ -1,4 +1,4 @@
-# rsync
+# rsync - (ghcr.io/servercontainers/) [x86 + arm]
 rsync - freshly complied from official stable releases on `alpine`
 
 # Source Code
@@ -6,6 +6,10 @@ Check the following link for a new version: https://www.samba.org/ftp/rsync/src/
 
 ## Changelogs
 
+* 2023-03-20
+    * complete upgrade
+    * github action to build container
+    * implemented ghcr.io as new registry
 * 2021-05-28
     * fixed build by switched to `alpine`
 * 2020-11-05

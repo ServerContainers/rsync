@@ -2,7 +2,7 @@ FROM alpine
 
 ENV PATH="/container/scripts:${PATH}"
 
-RUN export rsync_version=3.2.3 \
+RUN export rsync_version=3.2.7 \
  \
  && apk add --no-cache alpine-sdk \
                        bash \
@@ -11,7 +11,7 @@ RUN export rsync_version=3.2.3 \
                        zstd-dev \
                        xxhash-dev \
  \
- && wget https://www.samba.org/ftp/rsync/src/rsync-${rsync_version}.tar.gz \
+ && wget https://download.samba.org/pub/rsync/src/rsync-${rsync_version}.tar.gz \
  && tar xvf rsync-${rsync_version}.tar.gz \
  && rm rsync-${rsync_version}.tar.gz \
  && cd rsync-${rsync_version} \

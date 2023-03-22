@@ -3,7 +3,7 @@ version: '3'
 services:
   rsync:
     build: .
-    image: servercontainers/rsync
+    image: ghcr.io/servercontainers/rsync
     restart: always
     environment:
       RSYNC_SECRET_alice: "alice:PassWord"

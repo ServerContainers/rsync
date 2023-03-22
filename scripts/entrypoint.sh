@@ -3,9 +3,18 @@
 cat <<EOF
 ################################################################################
 
-Welcome to the servercontainers/rsync
+Welcome to the ghcr.io/servercontainers/rsync
 
 ################################################################################
+
+You'll find this container sourcecode here:
+
+    https://github.com/ServerContainers/rsync
+
+The container repository will be updated regularly.
+
+################################################################################
+
 
 EOF
 

@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.20.3
 
 ENV PATH="/container/scripts:${PATH}"
 
